@@ -193,7 +193,7 @@ $scriptBlock = {
             Write-Host "[$env:ComputerName]: Stopping Service [$ServiceName]"
             do {
                 $serviceObject = Get-WindowsService -ServiceName $ServiceName
-                $results = $serviceObject.StopService()
+                [void]$serviceObject.StopService()
 
                 if ($stopServiceTimer.Elapsed.TotalSeconds -gt $Timeout) {
                     if ($StopProcess) {
@@ -340,7 +340,7 @@ $scriptBlock = {
                 . "$PSScriptRoot\Add-LocalUserToLogonAsAService.ps1"
                 Add-LocalUserToLogonAsAService -user $runAsCredential.UserName
             }
-            $newService = New-Service @newServiceSplat
+            [void]$(New-Service @newServiceSplat)
             Write-Host "[$env:ComputerName]: Service [$ServiceName] created."
 
             if ($delayed)
