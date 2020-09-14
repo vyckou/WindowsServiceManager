@@ -167,9 +167,8 @@ $scriptBlock = {
         if ($respone.ReturnValue -ne 0) {
             return Write-Error -Message "[$env:ComputerName]: Service responded with [$($respone.ReturnValue)]. See https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/startservice-method-in-class-win32-service for details."
         }
-        else {
-            Write-Host "[$env:ComputerName]: [$ServiceName] started successfully!"
-        }
+
+        return Write-Host "[$env:ComputerName]: [$ServiceName] started successfully!"
     }
 
     function Stop-WindowsService {
